@@ -3,11 +3,10 @@ const deleteButton = document.querySelector('#delete-button')
 const messageDiv = document.querySelector('#message')
 
 update.addEventListener('click', _ => {
-  fetch('/quotes', {
+  fetch('/tasks', {
     method: 'put',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      name: 'Darth Vadar',
       quote: 'I find your lack of faith disturbing.'
     })
   })
@@ -21,7 +20,7 @@ update.addEventListener('click', _ => {
 
 deleteButton.addEventListener('click', _ => {
   console.log('mainmsm')
-  fetch('/quotes', {
+  fetch('/tasks', {
     method: 'delete',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -32,8 +31,8 @@ deleteButton.addEventListener('click', _ => {
       if (res.ok) return res.json()
     })
     .then(response => {
-      if (response === 'No quote to delete') {
-        messageDiv.textContent = 'No Darth Vadar quote to delete'
+      if (response === 'No task to delete') {
+        messageDiv.textContent = 'No Darth Vadar task to delete'
       } else {
         window.location.reload(true)
       }

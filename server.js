@@ -11,8 +11,8 @@ MongoClient.connect('mongodb+srv://admin:9QtLDmAVVmWyVYj@cluster0.zwozr.mongodb.
 .then(client =>{
     console.log('DATABASE CONNECTED SUCCESFULLY!')
     
-    const db = client.db('Todo-list')
-    const quotesCollection = db.collection('quotes')
+    const db = client.db('mainDB')
+    const quotesCollection = db.collection('Tasks')
     
     app.use(bodyParser.urlencoded({extended:true})) //app.use method lets us use the middleware
     //The urlencoded method within body-parser tells body-parser to extract data from the <form> element and add them to the body property in the request object.
@@ -22,28 +22,24 @@ MongoClient.connect('mongodb+srv://admin:9QtLDmAVVmWyVYj@cluster0.zwozr.mongodb.
 
     
     app.get('/', (req, res) =>{
-        
-      db.collection('quotes').find().toArray()
-        .then()    
-        .catch()
-        console.log('READ OPERATION')
 
-      db.collection('quotes').find().toArray()
+      db.collection('Tasks').find().toArray()
           .then(results => {
-            res.render('index.ejs', { quotes: results })
+            res.render('index.ejs', { tasks: results })
+            console.log('READ OPERATION')
           })
           .catch()
 
 
 
-      db.collection('quotes').find().toArray()
+      db.collection('Tasks').find().toArray()
           .then(results =>{
             console.log(results)
           })
           .catch(error => console.error(error))
     })
 
-    app.post('/quotes', (req,res) =>{
+    app.post('/tasks', (req,res) =>{
         quotesCollection.insertOne(req.body)
         .then(result => {
             console.log(result)
@@ -57,9 +53,9 @@ MongoClient.connect('mongodb+srv://admin:9QtLDmAVVmWyVYj@cluster0.zwozr.mongodb.
         console.log('Listening on 3000') //defines which port to listen on,in this case it's 3000 and executes the code between braces.
     })
 
-    app.put('/quotes', (req, res) => {
+    app.put('/tasks', (req, res) => {
       quotesCollection.findOneAndUpdate(
-        { name: 'Yoda' },
+        { tasks: 'Yoda' },
         {
           $set: {
             name: req.body.name,
@@ -73,10 +69,10 @@ MongoClient.connect('mongodb+srv://admin:9QtLDmAVVmWyVYj@cluster0.zwozr.mongodb.
       .then(result => {res.json('sucess')})
       .catch(error => console.error(error))
     })
-    app.delete('/quotes', (req, res) => {
+    app.delete('/tasks', (req, res) => {
       console.log('handler test')
       quotesCollection.deleteOne(
-        { name: req.body.name }
+        { tasks: req.body.name }
       )
         .then(result => {
           if (result.deletedCount === 0) {

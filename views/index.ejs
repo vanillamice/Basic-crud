@@ -9,19 +9,16 @@
   <body>
     <h1>To Do list</h1>
 
-    <form action="/quotes" method="POST">
-      <input type="text" placeholder="name" name="name" />
-      <input type="text" placeholder="quote" name="quote" />
+    <form action="/tasks" method="POST">
+      <input type="text" placeholder="tasks" name="tasks2" />
       <button type="submit">Submit</button>
     </form>
-        <h2>Quotes</h2>
-        <ul class="quotes">
-            <% for(var i = 0; i < quotes.length; i++){%>
-            <li class="quote">
-                <!--Output name from iterated object-->
-                <span><%= quotes[i].name %></span>
+        <h2>Task list</h2>
+        <ul class="tasks">
+            <% for(var i = 0; i < tasks.length; i++){%>
+            <li class="tasks">
                 <!-- Same but for the quote itself-->
-                <span><%= quotes[i].quote%></span>
+                <span><%= tasks[i].tasks2%></span>
             </li>
            <% } %>
         </ul>
