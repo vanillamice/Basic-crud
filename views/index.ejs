@@ -17,7 +17,7 @@
         <ul class="tasks">
             <% for(var i = 0; i < tasks.length; i++){%>
             <li class="tasks">
-                <!-- Same but for the quote itself-->
+                <!-- Same but for the task itself-->
                 <span><%= tasks[i].tasks2%></span>
             </li>
            <% } %>
@@ -25,17 +25,16 @@
         <div>
             <h2>Darth Vadar invades!</h2>
             <p>
-              Replace first Yoda's quote with a quote written by Darth Vadar
+              Replace first task
             </p>
-            <button id="update-button">Replace Yoda's quote</button>
+            <button id="update-button">Replace</button>
           </div>
           <div>
-            <h2>Remove Darth Vadar!</h2>
+            <h2>Remove task!</h2>
             <p>
-              Delete one Darth Vadar's quote. Does nothing if there are no more Darth
-              Vadar's quote
+              Delete task
             </p>
-            <button id="delete-button">Delete Darth Vadar's quote</button>
+            <button id="delete-button">Delete task</button>
           </div>
           <div id="message"></div>
           <script src="/main.js"></script>
